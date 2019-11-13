@@ -29,6 +29,7 @@ public class FragmentSample extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        fragmentSampleBinding.label.setText("Fragment From Code");
     }
 
     public FragmentSampleBinding getFragmentSampleBinding() {

@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil;
 
 public class MainActivity extends AppCompatActivity {
 
-    FragmentSample fragmentSampleIncluded;
+    FragmentSample fragmentSampleFromReplace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +26,11 @@ public class MainActivity extends AppCompatActivity {
         // Create a fragment by code.
         // Inside 'activity_main.xml' there is an FrameLayout with id 'fragmentContainer' tag.
         // This fragment will replace that object
-        fragmentSampleIncluded = new FragmentSample();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragmentSampleIncluded).commit();
-    }
+        fragmentSampleFromReplace = new FragmentSample();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragmentSampleFromReplace).commit();
 
-    @Override
-    protected void onStart() {
-        super.onStart();
         // Inside 'activity_main' there is an <include> tag with the id 'fragmentSampleIncluded'
         // This is an included layout that has no code behind it. We can access its elements with binding
-        fragmentSampleIncluded.getFragmentSampleBinding().label.setText("Fragment From Include");
+        activityMainBinding.fragmentInclude.label.setText("Layout From Include");
     }
 }
