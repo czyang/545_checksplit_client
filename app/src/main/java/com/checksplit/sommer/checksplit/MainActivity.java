@@ -15,6 +15,7 @@ import androidx.databinding.DataBindingUtil;
 public class MainActivity extends AppCompatActivity {
     FragmentSample fragmentSampleFromReplace;
     QRScanFragment qrScanFragment;
+    HomeButtonsFragment homeButtonsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +32,14 @@ public class MainActivity extends AppCompatActivity {
         // Create a fragment by code.
         // Inside 'activity_main.xml' there is an FrameLayout with id 'fragmentContainer' tag.
         // This fragment will replace that object
-        fragmentSampleFromReplace = new FragmentSample();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragmentSampleFromReplace).commit();
+        homeButtonsFragment = new HomeButtonsFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, homeButtonsFragment).commit();
 
         qrScanFragment = new QRScanFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerQRScan, qrScanFragment).commit();
 
         // Inside 'activity_main' there is an <include> tag with the id 'fragmentSampleIncluded'
         // This is an included layout that has no code behind it. We can access its elements with binding
-        activityMainBinding.fragmentInclude.label.setText("Layout From Include");
+//        activityMainBinding.fragmentInclude.label.setText("Layout From Include");
     }
 }
