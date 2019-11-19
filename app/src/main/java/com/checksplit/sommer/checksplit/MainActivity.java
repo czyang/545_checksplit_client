@@ -6,8 +6,12 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 
+import com.checksplit.sommer.checksplit.Utils.NavigationUtils;
 import com.checksplit.sommer.checksplit.databinding.ActivityMainBinding;
+import com.checksplit.sommer.checksplit.select_items_activity.SelectItemsActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
@@ -40,5 +44,17 @@ public class MainActivity extends AppCompatActivity {
         // Inside 'activity_main' there is an <include> tag with the id 'fragmentSampleIncluded'
         // This is an included layout that has no code behind it. We can access its elements with binding
         activityMainBinding.fragmentInclude.label.setText("Layout From Include");
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                n();
+            }
+        },2000);
+    }
+
+    private void n(){
+        NavigationUtils.presentActivity(this, SelectItemsActivity.class);
     }
 }
