@@ -1,8 +1,6 @@
-package com.checksplit.sommer.checksplit.select_items_activity;
+package com.checksplit.sommer.checksplit.selectItemsActivity;
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.view.View;
+import android.os.Bundle;
 
 import com.checksplit.sommer.checksplit.R;
 import com.checksplit.sommer.checksplit.databinding.SelectItemsActivityBinding;
@@ -16,11 +14,12 @@ public class SelectItemsActivity extends AppCompatActivity {
     SelectItemsActivityBinding binding;
 
     @Override
-    public View onCreateView(String name, Context context, AttributeSet attrs) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.select_items_activity);
-        return binding.getRoot();
+
+        ItemSelectionFragment itemSelectionFragment = new ItemSelectionFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.select_items_container,itemSelectionFragment).commit();
     }
-
-
 
 }

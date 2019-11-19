@@ -1,23 +1,17 @@
 package com.checksplit.sommer.checksplit;
 
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.checksplit.sommer.checksplit.Utils.NavigationUtils;
 import com.checksplit.sommer.checksplit.databinding.ActivityMainBinding;
-import com.checksplit.sommer.checksplit.select_items_activity.SelectItemsActivity;
+import com.checksplit.sommer.checksplit.selectItemsActivity.SelectItemsActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
 public class MainActivity extends AppCompatActivity {
-    FragmentSample fragmentSampleFromReplace;
     QRScanFragment qrScanFragment;
     HomeButtonsFragment homeButtonsFragment;
 
@@ -29,23 +23,11 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         activityMainBinding.setLifecycleOwner(this);
 
-        // Create Text Model. Set it as a variable in MainActivity Binding
-        // TextModel textModel = new TextModel();
-        // activityMainBinding.setVariable(BR.model, textModel);
-
-        // Create a fragment by code.
-        // Inside 'activity_main.xml' there is an FrameLayout with id 'fragmentContainer' tag.
-        // This fragment will replace that object
         homeButtonsFragment = new HomeButtonsFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, homeButtonsFragment).commit();
 
         qrScanFragment = new QRScanFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerQRScan, qrScanFragment).commit();
-
-        // Inside 'activity_main' there is an <include> tag with the id 'fragmentSampleIncluded'
-        // This is an included layout that has no code behind it. We can access its elements with binding
-//        activityMainBinding.fragmentInclude.label.setText("Layout From Include");
-        activityMainBinding.fragmentInclude.label.setText("Layout From Include");
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -53,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 n();
             }
-        },2000);
+        },500);
     }
 
     private void n(){
