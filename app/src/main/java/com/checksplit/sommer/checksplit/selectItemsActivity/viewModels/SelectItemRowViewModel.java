@@ -1,6 +1,7 @@
 package com.checksplit.sommer.checksplit.selectItemsActivity.viewModels;
 
 import android.text.Html;
+import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 
@@ -12,6 +13,8 @@ public class SelectItemRowViewModel extends ViewModel {
 
     private String itemName;
     private Float price;
+    private MutableLiveData<SpannableString> itemNameSpannable;
+    private MutableLiveData<SpannableString> priceSpannable;
     private MutableLiveData<Boolean> selectedByUser;
     private MutableLiveData<Boolean> selectedByOtherUser;
 
@@ -23,6 +26,12 @@ public class SelectItemRowViewModel extends ViewModel {
         selectedByUser.setValue(false);
         selectedByOtherUser = new MutableLiveData<>();
         selectedByOtherUser.setValue(false);
+        itemNameSpannable = new MutableLiveData<>();
+        itemNameSpannable.setValue(new SpannableString(""));
+        priceSpannable = new MutableLiveData<>();
+        priceSpannable.setValue(new SpannableString(""));
+        updateItemNameSpannable();
+        updateSpannablePrice();
     }
 
     public void itemClick() {
@@ -31,25 +40,35 @@ public class SelectItemRowViewModel extends ViewModel {
         }
     }
 
-    public SpannableString getFormattedName() {
+    public MutableLiveData<SpannableString> getItemNameSpannable() {
+        return itemNameSpannable;
+    }
+
+    public void updateItemNameSpannable() {
         SpannableString content = new SpannableString(itemName);
         if (!selectedByOtherUser.getValue()) {
             content.setSpan(new UnderlineSpan(), 0, itemName.length(), 0);
         }
-        return content;
+        itemNameSpannable.setValue(content);
     }
 
-    public SpannableString getFormattedPrice() {
+    public MutableLiveData<SpannableString> getPriceSpannable() {
+        return priceSpannable;
+    }
+
+    public void updateSpannablePrice() {
         String formattedPrice = String.format("$%.2f", price);
         SpannableString content = new SpannableString(formattedPrice);
         if (!selectedByOtherUser.getValue()) {
             content.setSpan(new UnderlineSpan(), 0, formattedPrice.length(), 0);
         }
-        return content;
+        priceSpannable.setValue(content);
     }
 
     public void updateSelectedByUser(Boolean status) {
         selectedByUser.setValue(status);
+        updateItemNameSpannable();
+        updateSpannablePrice();
     }
 
     public MutableLiveData<Boolean> getSelectedByUser() {
@@ -58,6 +77,8 @@ public class SelectItemRowViewModel extends ViewModel {
 
     public void updateSelectedByOtherUser(Boolean status) {
         selectedByOtherUser.setValue(status);
+        updateItemNameSpannable();
+        updateSpannablePrice();
     }
 
     public MutableLiveData<Boolean> getSelectedByOtherUser() {

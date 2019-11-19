@@ -29,7 +29,7 @@
             android:layout_marginLeft="16dp"
             app:layout_goneMarginLeft="16dp"
             android:textColor="@{model.selectedByUser ? @color/selection_blue : @color/black}"
-            android:text="@{model.getFormattedName()}"
+            android:text="@{model.itemNameSpannable}"
             tools:text="Item Name"/>
 
         <TextView
@@ -43,7 +43,7 @@
             android:gravity="right"
             android:textColor="@{model.selectedByUser ? @color/selection_blue : @color/black}"
             android:layout_marginRight="16dp"
-            android:text="@{model.getFormattedPrice()}"
+            android:text="@{model.priceSpannable}"
             tools:text="$10.00"/>
 
     </androidx.constraintlayout.ConstraintLayout>

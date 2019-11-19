@@ -4,9 +4,11 @@ import android.os.Bundle;
 
 import com.checksplit.sommer.checksplit.R;
 import com.checksplit.sommer.checksplit.databinding.SelectItemsActivityBinding;
+import com.checksplit.sommer.checksplit.selectItemsActivity.viewModels.SelectItemRowViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 public class SelectItemsActivity extends AppCompatActivity {
 
@@ -20,6 +22,7 @@ public class SelectItemsActivity extends AppCompatActivity {
 
         ItemSelectionFragment itemSelectionFragment = new ItemSelectionFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.select_items_container,itemSelectionFragment).commit();
+
     }
 
 }
