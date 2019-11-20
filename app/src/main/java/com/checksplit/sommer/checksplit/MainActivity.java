@@ -33,9 +33,14 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                n();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        n();
+                    }
+                });
             }
-        },3000);
+        },1000);
     }
 
     private void n(){

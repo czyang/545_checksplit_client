@@ -5,5 +5,6 @@
     <color name="colorAccent">#2f6479</color>
     <color name="white">#FFF</color>
     <color name="selection_blue">#1100ff</color>
+    <color name="selection_other_user">#7d7d7d</color>
     <color name="black">#000000</color>
 </resources>

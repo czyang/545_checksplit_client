@@ -15,6 +15,7 @@ import com.checksplit.sommer.checksplit.selectItemsActivity.viewModels.ItemSelec
 
 import java.util.List;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
@@ -59,6 +60,16 @@ public class ItemSelectionFragment extends Fragment {
     private void addItemsToList() {
         items = itemSelectionFragmentViewModel.createItems();
         for (SelectItemRowViewModel item : items) {
+            // configure items
+            item.noSelectionTypeface = ResourcesCompat.getFont(getContext(),R.font.arial);
+
+            item.userSelectedColor = getResources().getColor(R.color.selection_blue,null);
+            item.userSelectedFont = ResourcesCompat.getFont(getContext(),R.font.arialbd);
+
+            item.otherUserSelectedColor = getResources().getColor(R.color.selection_other_user,null);
+            item.otherUserSelectedFont = ResourcesCompat.getFont(getContext(),R.font.ariali);
+
+
             SelectItemsRowBinding itemsRowBinding = DataBindingUtil.inflate(getLayoutInflater(),R.layout.select_items_row,null,false);
             itemsRowBinding.setVariable(BR.model, item);
             itemsRowBinding.setLifecycleOwner(this);
