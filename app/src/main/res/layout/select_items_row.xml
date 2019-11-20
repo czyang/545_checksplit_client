@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="model"
+            type="com.checksplit.sommer.checksplit.selectItemsActivity.viewModels.SelectItemRowViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:onClick="@{(v) -> model.itemClick()}">
+
+        <TextView
+            android:id="@+id/itemName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:typeface="@{model.labelFont}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/price"
+            android:layout_marginLeft="16dp"
+            app:layout_goneMarginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textColor="@{model.labelColor}"
+            android:text="@{model.itemNameSpannable}"
+            tools:text="Item Name"/>
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:typeface="@{model.labelFont}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/itemName"
+            android:gravity="right"
+            android:textColor="@{model.labelColor}"
+            android:layout_marginRight="16dp"
+            android:text="@{model.priceSpannable}"
+            tools:text="$10.00"/>
+
+    </androidx.constraintlayout.ConstraintLayout>
+</layout>
