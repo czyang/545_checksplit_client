@@ -23,6 +23,11 @@ public class SelectItemsActivity extends AppCompatActivity {
         ItemSelectionFragment itemSelectionFragment = new ItemSelectionFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.select_items_container,itemSelectionFragment).commit();
 
+        SelectTipDisplayTotalFragment selectAndTipFragment = new SelectTipDisplayTotalFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.tax_and_total_container,selectAndTipFragment).commit();
+
+
+
     }
 
 }

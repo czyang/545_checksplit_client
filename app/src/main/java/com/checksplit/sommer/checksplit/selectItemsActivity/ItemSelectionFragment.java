@@ -18,6 +18,7 @@ import java.util.List;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 public class ItemSelectionFragment extends Fragment {
 
@@ -32,7 +33,10 @@ public class ItemSelectionFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.item_selection_fragment,null,false);
         binding.setLifecycleOwner(this);
 
-        itemSelectionFragmentViewModel = new ItemSelectionFragmentViewModel();
+        ViewModelProvider.Factory factory = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication());
+        ViewModelProvider viewModelProvider = new ViewModelProvider(getActivity(),factory);
+
+        itemSelectionFragmentViewModel = viewModelProvider.get(ItemSelectionFragmentViewModel.class);
 
         return binding.getRoot();
     }
@@ -80,5 +84,9 @@ public class ItemSelectionFragment extends Fragment {
     private void updateItem() {
         items.get(1).updateSelectedByOtherUser(true);
         items.get(2).updateSelectedByOtherUser(true);
+    }
+
+    public List<SelectItemRowViewModel> getItems() {
+        return items;
     }
 }

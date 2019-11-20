@@ -2,8 +2,6 @@ package com.checksplit.sommer.checksplit.selectItemsActivity.viewModels;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.text.Html;
-import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 
