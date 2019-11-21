@@ -3,6 +3,8 @@ package com.checksplit.sommer.checksplit;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
 
 import com.checksplit.sommer.checksplit.Utils.NavigationUtils;
 import com.checksplit.sommer.checksplit.databinding.ActivityMainBinding;
@@ -23,27 +25,30 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         activityMainBinding.setLifecycleOwner(this);
 
+        getSupportActionBar().hide();
+
         homeButtonsFragment = new HomeButtonsFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, homeButtonsFragment).commit();
 
         qrScanFragment = new QRScanFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerQRScan, qrScanFragment).commit();
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        n();
-                    }
-                });
-            }
-        },1000);
+
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        n();
+//                    }
+//                });
+//            }
+//        },1000);
     }
 
-    private void n(){
-        NavigationUtils.presentActivity(this, SelectItemsActivity.class);
-    }
+//    private void n(){
+//        NavigationUtils.presentActivity(this, SelectItemsActivity.class);
+//    }
 }

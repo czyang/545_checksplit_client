@@ -18,7 +18,8 @@
             android:background="@color/colorAccent"
             android:layout_height="wrap_content"
             android:id="@+id/transaction_history"
-            android:text="Transaction History">
+            android:text="Transaction History"
+            android:drawableLeft="@drawable/baseline_history_white_18dp" >>
 
         </Button>
 
@@ -31,7 +32,8 @@
             android:background="@color/colorAccent"
             android:layout_height="wrap_content"
             android:id="@+id/payment_methods"
-            android:text="Payment Methods">
+            android:text="Payment Methods"
+            android:drawableLeft="@drawable/baseline_credit_card_white_18dp" >
 
         </Button>
 
@@ -44,7 +46,8 @@
             android:background="@color/colorAccent"
             android:layout_height="wrap_content"
             android:id="@+id/settings"
-            android:text="Settings">
+            android:text="Settings"
+            android:drawableLeft="@drawable/baseline_settings_applications_white_18dp" >>
 
         </Button>
 
