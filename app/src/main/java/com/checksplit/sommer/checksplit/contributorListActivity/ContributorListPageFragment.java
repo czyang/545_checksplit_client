@@ -18,7 +18,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-public class ContributorListActivity extends Fragment {
+public class ContributorListPageFragment extends Fragment {
 
     ContributorListActivityBinding binding;
 

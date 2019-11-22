@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.checksplit.sommer.checksplit.R;
 import com.checksplit.sommer.checksplit.Utils.NavigationUtils;
-import com.checksplit.sommer.checksplit.contributorListActivity.ContributorListActivity;
+import com.checksplit.sommer.checksplit.contributorListActivity.ContributorListPageFragment;
 import com.checksplit.sommer.checksplit.databinding.SelectItemsPageFragmentBinding;
 
 import androidx.databinding.DataBindingUtil;
@@ -32,7 +32,7 @@ public class SelectItemsPageFragment extends Fragment {
         binding.continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationUtils.pushFragment(getFragmentManager(), R.id.fragmentContainer, new ContributorListActivity());
+                NavigationUtils.pushFragment(getFragmentManager(), R.id.fragmentContainer, new ContributorListPageFragment());
             }
         });
 

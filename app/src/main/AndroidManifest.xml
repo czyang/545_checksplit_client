@@ -22,13 +22,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".selectItemsActivity.SelectItemsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".contributorListActivity.ContributorListActivity">
+        <activity android:name=".SplitCheckFlowActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
