@@ -9,35 +9,11 @@
         android:layout_height="match_parent">
 
         <FrameLayout
-            android:id="@+id/select_items_container"
+            android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            tools:background="@color/colorPrimary"/>
-
-        <FrameLayout
-            android:id="@+id/tax_and_total_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/select_items_container"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:layout_height="50dp"
-            tools:background="@color/colorAccent"/>
-
-        <Button
-            android:id="@+id/continueBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:text="continue"
-            android:layout_marginBottom="16dp"
-            android:layout_marginRight="16dp"/>
+            app:layout_constraintLeft_toLeftOf="parent"/>
 
     </androidx.constraintlayout.ConstraintLayout>
 
