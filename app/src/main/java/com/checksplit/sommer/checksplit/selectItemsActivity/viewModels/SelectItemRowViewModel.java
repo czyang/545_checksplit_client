@@ -4,18 +4,21 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 
+import com.checksplit.sommer.checksplit.Utils.UserNames;
+import com.checksplit.sommer.checksplit.viewModels.Item;
+
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 public class SelectItemRowViewModel extends ViewModel {
 
-    private String itemName;
-    private Float price;
+    private Item item;
     private MutableLiveData<SpannableString> itemNameSpannable = new MutableLiveData<>();
     private MutableLiveData<SpannableString> priceSpannable = new MutableLiveData<>();
-    private MutableLiveData<Boolean> selectedByUser = new MutableLiveData<>();
-    private MutableLiveData<Boolean> selectedByOtherUser = new MutableLiveData<>();
     private MutableLiveData<Integer> labelColor = new MutableLiveData<>();
     private MutableLiveData<Typeface> labelFont = new MutableLiveData<>();
 
@@ -27,92 +30,71 @@ public class SelectItemRowViewModel extends ViewModel {
     public Typeface otherUserSelectedFont;
 
 
-    public SelectItemRowViewModel(String itemName, Float price) {
-        this.itemName = itemName;
-        this.price = price;
-        selectedByUser.setValue(false);
-        selectedByOtherUser.setValue(false);
+    public SelectItemRowViewModel(final Item item, LifecycleOwner lifecycleOwner) {
+        this.item = item;
         itemNameSpannable.setValue(new SpannableString(""));
         priceSpannable.setValue(new SpannableString(""));
         labelColor.setValue(Color.BLACK);
         labelFont.setValue(noSelectionTypeface);
-        updateItemNameSpannable();
-        updateSpannablePrice();
+
+        itemNameSpannable.setValue(new SpannableString("test"));
+        priceSpannable.setValue(new SpannableString("test"));
+
+        // whenever the item's select user is updated, we want to update the UI
+        item.selectedUserId.observe(lifecycleOwner, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                updateStyles();
+            }
+        });
     }
 
     public void itemClick() {
-        updateSelectedByUser();
+        item.updateUserSelected(UserNames.userMain);
     }
 
     public MutableLiveData<SpannableString> getItemNameSpannable() {
         return itemNameSpannable;
     }
 
-    public void updateItemNameSpannable() {
-        SpannableString content = new SpannableString(itemName);
-        if (!selectedByOtherUser.getValue()) {
-            content.setSpan(new UnderlineSpan(), 0, itemName.length(), 0);
-        }
-        itemNameSpannable.setValue(content);
-    }
-
     public MutableLiveData<SpannableString> getPriceSpannable() {
         return priceSpannable;
     }
 
-    public void updateSpannablePrice() {
-        String formattedPrice = String.format("$%.2f", price);
-        SpannableString content = new SpannableString(formattedPrice);
-        if (!selectedByOtherUser.getValue()) {
-            content.setSpan(new UnderlineSpan(), 0, formattedPrice.length(), 0);
-        }
-        priceSpannable.setValue(content);
-    }
+    public void updateStyles() {
+        SpannableString nameContent = new SpannableString(item.itemName);
 
-    public void updateSelectedByUser() {
-        if (!selectedByOtherUser.getValue()) {
-            Boolean status = !selectedByUser.getValue(); // flip the status
-            selectedByUser.setValue(status);
-            updateItemNameSpannable();
-            updateSpannablePrice();
+        String formattedPrice = String.format("$%.2f", item.price);
+        SpannableString priceContent = new SpannableString(formattedPrice);
 
-            if (status == true) {
-                labelColor.setValue(userSelectedColor);
-                labelFont.setValue(userSelectedFont);
-            } else {
-                labelColor.setValue(Color.BLACK);
-                labelFont.setValue(noSelectionTypeface);
-            }
+        if (item.selectedByUser() == true) {
+            labelColor.setValue(userSelectedColor);
+            labelFont.setValue(userSelectedFont);
+            nameContent.setSpan(new UnderlineSpan(), 0, item.itemName.length(), 0);
+            priceContent.setSpan(new UnderlineSpan(), 0, formattedPrice.length(), 0);
+        } else if (item.selectedByOtherUser() == true) {
+            labelColor.setValue(otherUserSelectedColor);
+            labelFont.setValue(otherUserSelectedFont);
+        } else {
+            labelColor.setValue(Color.BLACK);
+            labelFont.setValue(noSelectionTypeface);
+            nameContent.setSpan(new UnderlineSpan(), 0, item.itemName.length(), 0);
+            priceContent.setSpan(new UnderlineSpan(), 0, formattedPrice.length(), 0);
         }
+
+        itemNameSpannable.setValue(nameContent);
+        priceSpannable.setValue(priceContent);
     }
 
     public MutableLiveData<Integer> getLabelColor() {
         return labelColor;
     }
 
-    public MutableLiveData<Boolean> getSelectedByUser() {
-        return selectedByUser;
-    }
-
-    public void updateSelectedByOtherUser(Boolean status) {
-        selectedByOtherUser.setValue(status);
-        updateItemNameSpannable();
-        updateSpannablePrice();
-
-        if (status == true) {
-            labelColor.setValue(otherUserSelectedColor);
-            labelFont.setValue(otherUserSelectedFont);
-        } else {
-            labelColor.setValue(Color.BLACK);
-            labelFont.setValue(noSelectionTypeface);
-        }
-    }
-
-    public MutableLiveData<Boolean> getSelectedByOtherUser() {
-        return selectedByOtherUser;
-    }
-
     public MutableLiveData<Typeface> getLabelFont() {
         return labelFont;
+    }
+
+    public Item getItem() {
+        return item;
     }
 }
