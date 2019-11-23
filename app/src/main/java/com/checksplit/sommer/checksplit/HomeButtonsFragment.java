@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.checksplit.sommer.checksplit.Utils.NavigationUtils;
-import com.checksplit.sommer.checksplit.selectItemsActivity.SelectItemsActivity;
 
 import androidx.fragment.app.Fragment;
 
@@ -25,7 +24,7 @@ public class HomeButtonsFragment extends Fragment {
         final Button button = (Button) root.findViewById(R.id.settings);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                NavigationUtils.presentActivity(getActivity(), SelectItemsActivity.class);
+                NavigationUtils.presentActivity(getActivity(), SplitCheckFlowActivity.class);
             }
         });
 

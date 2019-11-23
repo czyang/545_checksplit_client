@@ -14,7 +14,6 @@ import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.checksplit.sommer.checksplit.Utils.NavigationUtils;
-import com.checksplit.sommer.checksplit.selectItemsActivity.SelectItemsActivity;
 import com.google.zxing.Result;
 
 import androidx.annotation.NonNull;
@@ -43,7 +42,7 @@ public class QRScanFragment extends Fragment {
                     public void run() {
                         Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
                         System.out.println("Successfully decode the QRCode");
-                        NavigationUtils.presentActivity(activity, SelectItemsActivity.class);
+                        NavigationUtils.presentActivity(activity, SplitCheckFlowActivity.class);
                     }
                 });
             }

@@ -29,6 +29,16 @@
             tools:layout_height="50dp"
             tools:background="@color/colorAccent"/>
 
+        <Button
+            android:id="@+id/continueBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="continue"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"/>
+
     </androidx.constraintlayout.ConstraintLayout>
 
 </layout>
