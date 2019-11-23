@@ -64,11 +64,15 @@ public class SelectTipDisplayTotalFragment extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String value = button.getText().toString().replace("%","");
-                    selectedTax = Float.parseFloat(value) / 100;
-                    updateTotal();
                     resetButtonBackgrounds();
-                    button.setBackground(getResources().getDrawable(R.drawable.tip_selection_button_selected));
+                    float value = Float.parseFloat(button.getText().toString().replace("%","")) / 100;
+                    if (value == selectedTax) {
+                        selectedTax = 0.00f;
+                    } else {
+                        selectedTax = value;
+                        button.setBackground(getResources().getDrawable(R.drawable.tip_selection_button_selected));
+                    }
+                    updateTotal();
                 }
             });
         }
