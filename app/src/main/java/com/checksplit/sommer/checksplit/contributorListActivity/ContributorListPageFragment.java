@@ -1,10 +1,12 @@
 package com.checksplit.sommer.checksplit.contributorListActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.checksplit.sommer.checksplit.QRScanFragment;
 import com.checksplit.sommer.checksplit.R;
 import com.checksplit.sommer.checksplit.databinding.ContributorListActivityBinding;
 import com.checksplit.sommer.checksplit.selectItemsActivity.viewModels.ItemSelectionFragmentViewModel;
@@ -14,14 +16,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 public class ContributorListPageFragment extends Fragment {
 
     ContributorListActivityBinding binding;
 
+    ContributorTableFragment contributorTableFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,6 +37,12 @@ public class ContributorListPageFragment extends Fragment {
         ItemSelectionFragmentViewModel itemSelectionFragmentViewModel = viewModelProvider.get(ItemSelectionFragmentViewModel.class);
 
         organizeItems(itemSelectionFragmentViewModel.getItems());
+
+        contributorTableFragment = new ContributorTableFragment();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contributorTableFragment, contributorTableFragment).commit();
+
+        // Hide action bar from this fragment
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
         return binding.getRoot();
     }
